@@ -1,0 +1,16 @@
+.search-container{
+    background-color: rgba(0, 0, 0, .2);
+    grid-area: 1/1/2/2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-input {
+    width: 80%;
+    height: 70%;
+    border: none;
+    border-radius: .5rem;
+    outline: none;
+    padding-inline: 1rem;
+}
