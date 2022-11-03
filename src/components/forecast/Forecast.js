@@ -2,7 +2,8 @@ import React from "react";
 import ForecastCard from "../pure/ForecastCard";
 import './Forecast.css'
 
-const Forecast = () => {
+const Forecast = ({forecastData}) => {
+    console.log("Datos recibidos en Forecast Component: ", forecastData);
     return(
         <div className="forecast-container">
             <ForecastCard />
@@ -10,8 +11,7 @@ const Forecast = () => {
             <ForecastCard />
             <ForecastCard />
             <ForecastCard />
-            <ForecastCard />
-            <ForecastCard />
+            
         </div>
     )
 }

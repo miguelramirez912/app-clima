@@ -2,7 +2,8 @@ import React from "react";
 import './CurrentWeather.css'
 import imgs from "../../assets/imgs";
 
-const CurrentWeather = () => {
+const CurrentWeather = ({weatherData}) => {
+    console.log("Datos recibidos en CurrentWeather Component: ", weatherData);
     return(
         <div className="current-weather">
             <div className="date-container">
