@@ -36,7 +36,7 @@
 .weather-resume{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 40%;
     padding: 1rem;
 }
 
@@ -64,7 +64,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    width: 50%;
+    width: 60%;
     padding: 1rem;
     font-size: 1.3rem;
 }

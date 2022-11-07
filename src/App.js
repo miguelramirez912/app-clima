@@ -32,13 +32,21 @@ function App() {
 
   useEffect(() => {
       getPosition();
+      // timer();
   }, []);
+
+  // const timer = () => setInterval(() => {
+  //   console.log("Listo para consultar el clima de nuevo");
+  //   console.log("---------")
+  // }, 2000);
 
   return (
     <div className="App">
       <Search />
-      <CurrentWeather weatherData={currentWeather} />
+      {Object.keys(currentWeather).length && <CurrentWeather weatherData={currentWeather} />}
+      {/* {forecast.length < 0 && <Forecast forecastData={forecast}/>} */}
       <Forecast forecastData={forecast}/>
+      
     </div>
   );
 }
