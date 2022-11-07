@@ -3,20 +3,16 @@ import DateComponent from "../pure/DateComponent";
 import './CurrentWeather.css'
 
 const CurrentWeather = ({weatherData}) => {
-    // console.log("Datos recibidos en CurrentWeather Component: ", weatherData);
+    console.log("Datos recibidos en CurrentWeather Component: ", weatherData);
     console.log("Se renderiza CurrentWeather Container");
-    const getTimeFromMs = (miliseconds) => {
-        const date = new Date((miliseconds) * 1000);
-        // console.log(date);
+    const getTimeFromMs = (seconds) => {
+        const date = new Date((seconds) * 1000);
         const hours = date.getHours();
         const formatedHours = hours < 10 ? `0${hours}` : hours 
         const minutes = date.getMinutes();
         const formatedMinutes = minutes < 10 ? `0${minutes}` : minutes;
         return `${formatedHours}:${formatedMinutes} hrs`;
     }
-
-    
-
 
     useEffect(() => {
         console.log("Se renderiza CurrentWeather Container");
@@ -25,8 +21,6 @@ const CurrentWeather = ({weatherData}) => {
         <div className="current-weather">
             <div className="date-container">
                 <p className="date-container-city">{weatherData.cityLabel}<span>/{weatherData.sys.country}</span></p>
-                {/* <p className="date-container-time">{getLocalTime(weatherData.timezone)}<span className="am-pm"> hrs</span></p>
-                <p className="date-container-date">{getLocalDate(weatherData.timezone)}</p> */}
                 <DateComponent timezone={weatherData.timezone}/>
             </div>
             <div className="weather-container">

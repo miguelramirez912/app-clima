@@ -31,7 +31,7 @@ const DateComponent = ({timezone}) => {
 
     useEffect(() => {
         const utcMilliseconds = getUTCMiliseconds();
-        let localMilliseconds = utcMilliseconds + (timezone * 1000)  
+        let localMilliseconds = utcMilliseconds + (timezone * 1000);
         setInterval(() => {
             localMilliseconds += 1000;
             getLocalDate(localMilliseconds);
