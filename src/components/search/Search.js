@@ -12,7 +12,8 @@ const Search = ({onSearch}) => {
     }
 
     const loadOptions = (inputValue) => {
-        return fetch(`${geoDBBasicURL}cities?minPopulation=1000000&namePrefix=${inputValue}&languageCode=es`, geoDBOptions)
+        // return fetch(`${geoDBBasicURL}cities?minPopulation=1000000&namePrefix=${inputValue}&languageCode=es`, geoDBOptions)
+        return fetch(`${geoDBBasicURL}cities?namePrefix=${inputValue}&languageCode=es`, geoDBOptions)
         .then(response => response.json())
         .then(response => {
             return {
