@@ -1,5 +1,5 @@
 // GeoDB API
-export const options = {
+export const geoDBOptions = {
 	method: 'GET',
 	headers: {
 		'X-RapidAPI-Key': 'f8534f9f60msh6d91453af48bcd7p1ad0f3jsn7090a77951dd',

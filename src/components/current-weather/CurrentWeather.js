@@ -1,10 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import DateComponent from "../pure/DateComponent";
 import './CurrentWeather.css'
 
 const CurrentWeather = ({weatherData}) => {
-    console.log("Datos recibidos en CurrentWeather Component: ", weatherData);
-    console.log("Se renderiza CurrentWeather Container");
+    console.log('Se renderiza CurrenWeather');
+    // console.log('Datos recibidos en CurrentWeather', weatherData);
+    // console.log(`prop timezone ${weatherData.timezone}`);
+    // console.log(`Se inicializa el estado timezone de CurrentWeather`);
+    // const {timezone} = weatherData; 
+    const [timezoneState, setTimezoneState] = useState(0);
+    // console.log(`Valor del estado timezone de CurrentWeather: ${timezoneState}`);
+
     const getTimeFromMs = (seconds) => {
         const date = new Date((seconds) * 1000);
         const hours = date.getHours();
@@ -13,10 +19,16 @@ const CurrentWeather = ({weatherData}) => {
         const formatedMinutes = minutes < 10 ? `0${minutes}` : minutes;
         return `${formatedHours}:${formatedMinutes} hrs`;
     }
-
+    
     useEffect(() => {
-        console.log("Se renderiza CurrentWeather Container");
-    }, []);
+        // console.log('useEffect de CurrentWeather');
+        // setTimezone(weatherData.timezone);
+        if(weatherData){
+            setTimezoneState(weatherData.timezone);
+
+        }
+        console.log(`Valor del estado timezone de CurrentWeather: ${timezoneState}`);
+    }, [weatherData]);
     return(
         <div className="current-weather">
             <div className="date-container">

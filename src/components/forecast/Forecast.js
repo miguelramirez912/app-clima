@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import './Forecast.css'
 
 const Forecast = ({forecastData}) => {
-    console.log("se renderiza forecast component");
-    console.log("Datos recibidos en Forecast Component: ", forecastData);
+    // console.log("se renderiza forecast component");
+    // console.log("Datos recibidos en Forecast Component: ", forecastData);
     const [forecast, setForecast] = useState([]);
 
     const days = ['Domingo','Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes','Sabado'];
 
     const getFiveDaysForecast = (forecastData) => {
-        console.log(forecastData.list);
+        // console.log(forecastData.list);
         const filteredForecast = forecastData.list.filter(forecast => /15:00:00/.test(forecast.dt_txt)).map(forecast => {
             const date = new Date(forecast.dt * 1000);
             return {...forecast, dayName: days[date.getDay()]};

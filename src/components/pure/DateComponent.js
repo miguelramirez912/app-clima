@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react"
 
-const DateComponent = ({timezone}) => {
+const DateComponent = ({timezone, utc}) => {
+    // console.log('Se rederiza DateComponent');
     const [localTime, setLocalTime] = useState({hrs: 0, mins: 0, sec: 0});
     const [localDate, setLocalDate] = useState({dayName: '', dayNumber: 0, month: ''});
+    const [timeZone, setTimeZone] = useState(0);
 
-    const getUTCMiliseconds = () => {
-        const date = new Date();
-        const offset = date.getTimezoneOffset() // Devuelve minutos
-        const utcMilliseconds = date.getTime() + (offset * 60000);// s -> ms
-        return utcMilliseconds;
-    }
-
-    // console.log("Se renderiza reloj");
+    
+    // console.log(`Estado timezone en DateComponent: ${timeZone}`);
     const getLocalDate = (miliseconds) => {
         const localDate = new Date(miliseconds);
         const localHours = localDate.getHours();
@@ -30,14 +26,28 @@ const DateComponent = ({timezone}) => {
     }
 
     useEffect(() => {
-        const utcMilliseconds = getUTCMiliseconds();
-        let localMilliseconds = utcMilliseconds + (timezone * 1000);
-        setInterval(() => {
-            localMilliseconds += 1000;
-            getLocalDate(localMilliseconds);
+        if(timezone){
+            setTimeZone(timezone);
+        }
+        let intervalID = setInterval(() => {
+            let date = new Date();
+            const mSeconds = date.getTime();
+            const offset = date.getTimezoneOffset() * 60000;
+            const utcMilliseconds = mSeconds + (offset);
+            const utcDate = new Date(utcMilliseconds);
+            // console.log(`UTCDate: ${utcDate}`);
+            const utcDateMs = utcDate.getTime();
+            // console.log(`milisegundos ${utcDateMs} + timezone ${timezone * 1000} = ${utcDateMs + (timezone*1000)}`);
+            const localDateMs = utcDateMs + (timezone * 1000);
+            const localDate = new Date(localDateMs);
+            // console.log(`LocalTime: ${localDate}`);
+            getLocalDate(localDate.getTime());
         }, 1000);
-    }, [])
-
+        // console.log(`Estado timezone de DateComponent: ${timeZone}`);
+        return(() => {
+            clearInterval(intervalID)
+        })
+    }, [timezone]);
     return(
         <div>
             <p className="date-container-time">{`${localTime.hrs}:${localTime.mins}:${localTime.sec}`}<span className="am-pm"> hrs</span></p>
