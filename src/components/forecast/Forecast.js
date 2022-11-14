@@ -1,30 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AppContext } from "../../Provider";
 import './Forecast.css'
 
-const Forecast = ({forecastData}) => {
-    // console.log("se renderiza forecast component");
-    // console.log("Datos recibidos en Forecast Component: ", forecastData);
-    const [forecast, setForecast] = useState([]);
-
+const Forecast = () => {
+    const [state, setState] = useContext(AppContext);
+    const {forecastResponse} = state;
+    const [filteredForecast, setFilteredForecast] = useState([]);
     const days = ['Domingo','Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes','Sabado'];
 
-    const getFiveDaysForecast = (forecastData) => {
-        // console.log(forecastData.list);
-        const filteredForecast = forecastData.list.filter(forecast => /15:00:00/.test(forecast.dt_txt)).map(forecast => {
-            const date = new Date(forecast.dt * 1000);
+    const getFiveDaysForecast = (forecastResponse) => {
+        const filteredArray = forecastResponse.list.filter(forecast => /15:00:00/.test(forecast.dt_txt)).map(forecast => {
+            const date = new Date(forecast.dt_txt)
             return {...forecast, dayName: days[date.getDay()]};
         })
-        console.log(filteredForecast);
-        setForecast(filteredForecast);
+        setFilteredForecast(filteredArray);
     }
 
     useEffect(() => {
-        getFiveDaysForecast(forecastData);
-    }, []);
+        getFiveDaysForecast(forecastResponse);
+    }, [state.forecastResponse]);
 
     return(
         <div className="forecast-container">
-            {forecast.map(card => 
+            {filteredForecast.map(card => 
                 <div className="forecast-card" key={card.dt}>
                     <div className="forecast-card--day">{card.dayName}</div>
                     <div className="forecast-card--details">
@@ -41,19 +39,10 @@ const Forecast = ({forecastData}) => {
                                 <p>P. de lluvia</p>
                                 <p>{card.pop * 100}%</p>
                             </div>
-                            {/* <p>Presión {card.main.pressure} hPa</p> */}
-                            {/* <p>Prob. de lluvia {card.pop * 100}%</p> */}
                         </div>
                     </div>
                 </div>
             )}
-
-            {/* <ForecastCard />
-            <ForecastCard />
-            <ForecastCard />
-            <ForecastCard />
-            <ForecastCard /> */}
-            
         </div>
     )
 }
