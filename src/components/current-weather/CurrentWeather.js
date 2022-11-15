@@ -1,67 +1,61 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../../Provider";
 import DateComponent from "../pure/DateComponent";
 import './CurrentWeather.css'
 
-const CurrentWeather = ({weatherData}) => {
-    console.log('Se renderiza CurrenWeather');
-    // console.log('Datos recibidos en CurrentWeather', weatherData);
-    // console.log(`prop timezone ${weatherData.timezone}`);
-    // console.log(`Se inicializa el estado timezone de CurrentWeather`);
-    // const {timezone} = weatherData; 
-    const [timezoneState, setTimezoneState] = useState(0);
-    // console.log(`Valor del estado timezone de CurrentWeather: ${timezoneState}`);
+const CurrentWeather = () => {
+    // console.log('Se renderiza CurrenWeather');
+    const [state, setState] = useContext(AppContext);
+    // console.log('Estado compartido en CurrentWeather: ', state);
+    const {cityName, forecastResponse, weatherResponse} = state;
 
-    const getTimeFromMs = (seconds) => {
+    const getTimeFromMs = (seconds, timezone) => {
         const date = new Date((seconds) * 1000);
-        const hours = date.getHours();
+        const offset = date.getTimezoneOffset() * 60000;
+        const utcSunMs = date.getTime() + offset;
+        const utcSunTime = new Date(utcSunMs)
+        const localSunTimeMs = utcSunTime.getTime() + (timezone * 1000);
+        const localSunTime = new Date(localSunTimeMs);
+        const hours = localSunTime.getHours();
         const formatedHours = hours < 10 ? `0${hours}` : hours 
-        const minutes = date.getMinutes();
+        const minutes = localSunTime.getMinutes();
         const formatedMinutes = minutes < 10 ? `0${minutes}` : minutes;
         return `${formatedHours}:${formatedMinutes} hrs`;
     }
     
-    useEffect(() => {
-        // console.log('useEffect de CurrentWeather');
-        // setTimezone(weatherData.timezone);
-        if(weatherData){
-            setTimezoneState(weatherData.timezone);
-
-        }
-        console.log(`Valor del estado timezone de CurrentWeather: ${timezoneState}`);
-    }, [weatherData]);
     return(
         <div className="current-weather">
             <div className="date-container">
-                <p className="date-container-city">{weatherData.cityLabel}<span>/{weatherData.sys.country}</span></p>
-                <DateComponent timezone={weatherData.timezone}/>
+                <p className="date-container-city">{cityName.city}<span>/{cityName.country}</span></p>
+                <DateComponent />
             </div>
             <div className="weather-container">
                 <div className="weather-resume">
                     <div className="weather-resume-img">
-                        <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="clima"/>
+                        <img src={`http://openweathermap.org/img/wn/${weatherResponse.weather[0].icon}@2x.png`} alt="clima"/>
                     </div>
-                    <label className="weather-resume-temp">{Math.round(weatherData.main.temp)}°C</label>
+                    <label className="weather-resume-temp">{Math.round(weatherResponse.main.temp)}°C</label>
                 </div>
                 <div className="weather-details">
                     <div className="weather-detail">
                         <p>Humedad</p>
-                        <p>{weatherData.main.humidity} %</p>
+                        <p>{weatherResponse.main.humidity} %</p>
                     </div>
                     <div className="weather-detail">
                         <p>Presion</p>
-                        <p>{`${weatherData.main.pressure} hPa`}</p>
+                        <p>{`${weatherResponse.main.pressure} hPa`}</p>
                     </div>
                     <div className="weather-detail">
                         <p>Velocidad del Viento</p>
-                        <p>{`${weatherData.wind.speed} m/s`}</p>
+                        <p>{`${weatherResponse.wind.speed} m/s`}</p>
                     </div>
                     <div className="weather-detail">
                         <p>Amanecer</p>
-                        <p>{getTimeFromMs(weatherData.sys.sunrise)}</p>
+                        <p>{getTimeFromMs(weatherResponse.sys.sunrise, forecastResponse.city.timezone)}</p>
                     </div>
                     <div className="weather-detail">
                         <p>Puesta de Sol</p>
-                        <p>{getTimeFromMs(weatherData.sys.sunset)}</p>
+                        <p>{getTimeFromMs(weatherResponse.sys.sunset, forecastResponse.city.timezone)}</p>
                     </div>
                 </div>
             </div>
