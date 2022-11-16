@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { AppContext } from "../../Provider";
+import './DateComponent.css';
 
 const DateComponent = () => {
     const [state, setState] = useContext(AppContext);
@@ -42,7 +43,10 @@ const DateComponent = () => {
         <div>
             {Object.keys(localTime).length && 
             <div>
-                <p className="date-container-time">{`${localTime.hrs}:${localTime.mins}:${localTime.sec}`}<span className="am-pm"> hrs</span></p>
+                <p className="date-container-time">{`${localTime.hrs}:${localTime.mins}`}
+                    <span className="date-container-seconds">{localTime.sec}</span>
+                    <span className="am-pm"> hrs</span>
+                </p>
                 <p className="date-container-date">{`${localDate.dayName}, ${localDate.dayNumber} ${localDate.month}`}</p>
             </div>
             }
