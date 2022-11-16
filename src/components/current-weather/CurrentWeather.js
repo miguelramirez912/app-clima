@@ -26,7 +26,8 @@ const CurrentWeather = () => {
     return(
         <div className="current-weather">
             <div className="date-container">
-                <p className="date-container-city">{cityName.city}<span>/{cityName.country}</span></p>
+                <p className="date-container-city">{cityName.city}</p>
+                <span className="date-container-country">{cityName.country}</span>
                 <DateComponent />
             </div>
             <div className="weather-container">
@@ -46,7 +47,7 @@ const CurrentWeather = () => {
                         <p>{`${weatherResponse.main.pressure} hPa`}</p>
                     </div>
                     <div className="weather-detail">
-                        <p>Velocidad del Viento</p>
+                        <p>Vel. del Viento</p>
                         <p>{`${weatherResponse.wind.speed} m/s`}</p>
                     </div>
                     <div className="weather-detail">

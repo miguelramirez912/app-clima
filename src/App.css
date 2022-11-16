@@ -21,3 +21,19 @@ body {
   grid-template-rows: 7% 58% 35%;
 }
 
+@media (max-width: 390px){
+  .App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    /* width: 100%; */
+  }
+}
+@media (max-width: 850px){
+  .App{
+    /* display: flex;
+    flex-direction: column; */
+    grid-template-rows: 7% 63% 30%;
+  }
+}
