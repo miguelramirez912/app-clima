@@ -4,6 +4,12 @@
     justify-content: space-around;
     align-items: center;
 }
+.forecast-slider {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 .forecast-card {
     background-color: rgba(0, 0, 0, .4);
     border: 1px solid white;
@@ -14,6 +20,7 @@
     overflow: hidden; /*revisar*/
     display: grid;
     grid-template-rows: 20% 80%;
+    flex-shrink: 0;
 }
 .forecast-card--day{
     text-align: center;
@@ -36,4 +43,33 @@
 }
 .forecast-card--details-info p {
     text-align: center;
+}
+
+@media (max-width: 390px) {
+    .forecast-container {
+        margin-top: 1rem;
+        width: 100vw;
+        overflow: scroll;
+        padding: 1rem;
+        justify-content: flex-start;
+    }
+    .forecast-slider {
+        display: flex;
+        gap: 1.5rem;
+        width: auto;
+    }
+}
+@media (max-width: 850px){
+    .forecast-container {
+        margin-top: 1rem;
+        width: 100vw;
+        overflow: scroll;
+        padding: 1rem;
+        justify-content: flex-start;
+    }
+    .forecast-slider {
+        display: flex;
+        gap: 3rem;
+        width: auto;
+    }
 }
