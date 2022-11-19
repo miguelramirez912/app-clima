@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/miguelramirez912/app-clima/static/css/main.9962e02f.css",
+    "main.js": "/miguelramirez912/app-clima/static/js/main.15fdc891.js",
+    "static/js/787.9d671024.chunk.js": "/miguelramirez912/app-clima/static/js/787.9d671024.chunk.js",
+    "service-worker.js": "/miguelramirez912/app-clima/service-worker.js",
+    "index.html": "/miguelramirez912/app-clima/index.html",
+    "main.9962e02f.css.map": "/miguelramirez912/app-clima/static/css/main.9962e02f.css.map",
+    "main.15fdc891.js.map": "/miguelramirez912/app-clima/static/js/main.15fdc891.js.map",
+    "787.9d671024.chunk.js.map": "/miguelramirez912/app-clima/static/js/787.9d671024.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9962e02f.css",
+    "static/js/main.15fdc891.js"
+  ]
+}
