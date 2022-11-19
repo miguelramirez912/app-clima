@@ -3,6 +3,7 @@ import { AppContext } from "../../Provider";
 import './Forecast.css'
 
 const Forecast = () => {
+    //eslint-disable-next-line
     const [state, setState] = useContext(AppContext);
     const {forecastResponse} = state;
     const [filteredForecast, setFilteredForecast] = useState([]);
@@ -15,9 +16,10 @@ const Forecast = () => {
         })
         setFilteredForecast(filteredArray);
     }
-
+    
     useEffect(() => {
         getFiveDaysForecast(forecastResponse);
+        //eslint-disable-next-line
     }, [state.forecastResponse]);
 
     return(

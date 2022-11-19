@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './App.css';
 import CurrentWeather from './components/current-weather/CurrentWeather';
 import Forecast from './components/forecast/Forecast';
@@ -17,7 +17,7 @@ function App() {
 
   const onSearch = (searchData) => {
     // console.log(searchData);
-    const {lat, lon, label} = searchData;
+    const {lat, lon} = searchData;
     getData(lat, lon);
   }
 
@@ -55,9 +55,13 @@ function App() {
     })
   }
 
+  // useEffect(() => {
+  //     getPosition();
+  // }, []);
+
   useEffect(() => {
-      getPosition();
-  }, []);
+    getPosition();
+});
 
   return (
       <div className="App">

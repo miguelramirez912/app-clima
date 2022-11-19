@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
 import { geoDBBasicURL, geoDBOptions } from "../../api";
-import { AppContext } from "../../Provider";
+// import { AppContext } from "../../Provider";
 import './Search.css'
 
 const Search = ({onSearch}) => {
     const [search, setSearch] = useState('');
-    const [state, setState] = useContext(AppContext);
+    // const [state, setState] = useContext(AppContext);
     const handleSearchChange = (searchData) => {
         setSearch(searchData);
         // console.log(search)

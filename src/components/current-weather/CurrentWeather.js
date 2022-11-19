@@ -4,9 +4,8 @@ import DateComponent from "../pure/DateComponent";
 import './CurrentWeather.css'
 
 const CurrentWeather = () => {
-    // console.log('Se renderiza CurrenWeather');
+    // eslint-disable-next-line
     const [state, setState] = useContext(AppContext);
-    // console.log('Estado compartido en CurrentWeather: ', state);
     const {cityName, forecastResponse, weatherResponse} = state;
 
     const getTimeFromMs = (seconds, timezone) => {
