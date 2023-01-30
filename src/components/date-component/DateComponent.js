@@ -5,13 +5,11 @@ import './DateComponent.css';
 const DateComponent = () => {
     //eslint-disable-next-line
     const [state, setState] = useContext(AppContext);
-    console.log("Estado compartido desde DateComponent: ", state);
+    //console.log("Estado compartido desde DateComponent: ", state);
     const [localTime, setLocalTime] = useState({});
     const [localDate, setLocalDate] = useState({});
     
-
-    const getLocalDate = (miliseconds) => {
-        const localDate = new Date(miliseconds);
+    const getLocalDateDetails = (localDate) => {
         const localHours = localDate.getHours();
         const formatedHours = localHours < 10 ? `0${localHours}` : localHours;
         const localMinutes = localDate.getMinutes();
@@ -29,17 +27,16 @@ const DateComponent = () => {
     }
 
     useEffect(() => {
-        let timer = 0
-        let clock = setInterval(() => {
-            const localMs = state.localDate.getTime() + timer;
-            timer += 1000;
-            // console.log(localMs);
-            getLocalDate(localMs)
+       let clock = setInterval(() => {
+            const localDate = state.getLocalDate(state.weatherResponse.timezone);
+            getLocalDateDetails(localDate);
         }, 1000);
         return(() => {
             clearInterval(clock)
         })
+    // eslint-disable-next-line    
     }, [state.localDate]);
+
     return(
         <div>
             {Object.keys(localTime).length && 
