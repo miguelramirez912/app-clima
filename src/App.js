@@ -29,29 +29,15 @@ function App() {
     let isoLat = lat > 0 ? `%2B${lat}` : lat;
     let isoLon = lon > 0 ? `%2B${lon}` : lon;
     const cityNameFetch = fetch(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?location=${isoLat}${isoLon}&limit=1&languageCode=es`, geoDBOptions);
-    const getLocalDate = timezone => {
-      let date = new Date();
-      const mSeconds = date.getTime();
-      const offset = date.getTimezoneOffset() * 60000;
-      const utcMilliseconds = mSeconds + (offset);
-      const utcDate = new Date(utcMilliseconds);
-      const utcDateMs = utcDate.getTime();
-      const localDateMs = utcDateMs + (timezone * 1000);
-      const localDate = new Date(localDateMs);
-      return localDate;
-    }
-
+    
     Promise.all([currentWeatherFetch, forecastFetch, cityNameFetch])
     .then(async (response) => {
       const weatherResponse =  await response[0].json();
       const forecastResponse = await response[1].json();
       const cityName = await response[2].json();
-      //eliminar de estado compoartido, mover a date conpmnen
-      const localDate = getLocalDate(weatherResponse.timezone); 
       setState({...state, 
         weatherResponse, 
         forecastResponse, 
-        localDate,
         cityName: cityName.data[0] ?? {}, 
         isLoading: false});
       console.log(state);
@@ -60,20 +46,11 @@ function App() {
 
   useEffect(() => {
       getPosition();
+    // eslint-disable-next-line  
   }, []);
-
-//   useEffect(() => {
-//     getPosition();
-// });
 
   return (
       <div className="App">
-        {/* {state.isLoading ? <Loader/> 
-        :<div className='App'>
-          <Search onSearch={onSearch}/>
-          {state.weatherResponse && <CurrentWeather/>}
-          {state.forecastResponse && <Forecast/>}
-        </div>} */}
           <Search onSearch={onSearch}/>
           {state.isLoading ? <Loader/> : <CurrentWeather/>}
           {state.forecastResponse && <Forecast/>}

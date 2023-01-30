@@ -40,7 +40,7 @@ const Forecast = () => {
                                 </div>
                                 <div className="weather-detail">
                                     <p>P. de lluvia</p>
-                                    <p>{card.pop * 100}%</p>
+                                    <p>{Math.round(card.pop * 100)}%</p>
                                 </div>
                             </div>
                         </div>
