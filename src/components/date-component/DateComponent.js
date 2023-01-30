@@ -5,7 +5,7 @@ import './DateComponent.css';
 const DateComponent = () => {
     //eslint-disable-next-line
     const [state, setState] = useContext(AppContext);
-    // console.log("Estado compartido desde DateComponent: ", state);
+    console.log("Estado compartido desde DateComponent: ", state);
     const [localTime, setLocalTime] = useState({});
     const [localDate, setLocalDate] = useState({});
     

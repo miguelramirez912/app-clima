@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../Provider";
-import DateComponent from "../pure/DateComponent";
+import DateComponent from "../date-component/DateComponent";
 import './CurrentWeather.css'
 
 const CurrentWeather = () => {

@@ -5,6 +5,7 @@ import Forecast from './components/forecast/Forecast';
 import Search from './components/search/Search';
 import {OpenWeatherBasicURL, OpenWeatherAPIKey, geoDBOptions} from './api'
 import { AppContext } from './Provider';
+import Loader from './components/loader/Loader';
 
 function App() {
   const [state, setState] = useContext(AppContext);
@@ -22,6 +23,7 @@ function App() {
   }
 
   const getData = (lat, lon) => {
+    setState({...state, isLoading: true})
     const currentWeatherFetch = fetch(`${OpenWeatherBasicURL}/weather?lat=${lat}&lon=${lon}&appid=${OpenWeatherAPIKey}&units=metric&lang=es`);
     const forecastFetch = fetch(`${OpenWeatherBasicURL}/forecast?lat=${lat}&lon=${lon}&appid=${OpenWeatherAPIKey}&units=metric`);
     let isoLat = lat > 0 ? `%2B${lat}` : lat;
@@ -44,7 +46,8 @@ function App() {
       const weatherResponse =  await response[0].json();
       const forecastResponse = await response[1].json();
       const cityName = await response[2].json();
-      const localDate = getLocalDate(weatherResponse.timezone);
+      //eliminar de estado compoartido, mover a date conpmnen
+      const localDate = getLocalDate(weatherResponse.timezone); 
       setState({...state, 
         weatherResponse, 
         forecastResponse, 
@@ -55,19 +58,25 @@ function App() {
     })
   }
 
-  // useEffect(() => {
-  //     getPosition();
-  // }, []);
-
   useEffect(() => {
-    getPosition();
-});
+      getPosition();
+  }, []);
+
+//   useEffect(() => {
+//     getPosition();
+// });
 
   return (
       <div className="App">
-        <Search onSearch={onSearch}/>
-        {state.weatherResponse && < CurrentWeather />}
-        {state.forecastResponse && <Forecast/>}
+        {/* {state.isLoading ? <Loader/> 
+        :<div className='App'>
+          <Search onSearch={onSearch}/>
+          {state.weatherResponse && <CurrentWeather/>}
+          {state.forecastResponse && <Forecast/>}
+        </div>} */}
+          <Search onSearch={onSearch}/>
+          {state.isLoading ? <Loader/> : <CurrentWeather/>}
+          {state.forecastResponse && <Forecast/>}
       </div>
   );
 }
