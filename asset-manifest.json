@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/miguelramirez912/app-clima/static/css/main.01f3c22d.css",
-    "main.js": "/miguelramirez912/app-clima/static/js/main.830b7d6f.js",
-    "static/js/787.9d671024.chunk.js": "/miguelramirez912/app-clima/static/js/787.9d671024.chunk.js",
-    "service-worker.js": "/miguelramirez912/app-clima/service-worker.js",
-    "index.html": "/miguelramirez912/app-clima/index.html",
-    "static/media/loader_2.svg": "/miguelramirez912/app-clima/static/media/loader_2.209e0c9ac600be5ba8337b00bae92c0b.svg",
-    "main.01f3c22d.css.map": "/miguelramirez912/app-clima/static/css/main.01f3c22d.css.map",
-    "main.830b7d6f.js.map": "/miguelramirez912/app-clima/static/js/main.830b7d6f.js.map",
-    "787.9d671024.chunk.js.map": "/miguelramirez912/app-clima/static/js/787.9d671024.chunk.js.map"
+    "main.css": "/app-clima/static/css/main.01f3c22d.css",
+    "main.js": "/app-clima/static/js/main.ea02196d.js",
+    "static/js/787.9d671024.chunk.js": "/app-clima/static/js/787.9d671024.chunk.js",
+    "service-worker.js": "/app-clima/service-worker.js",
+    "index.html": "/app-clima/index.html",
+    "static/media/loader_2.svg": "/app-clima/static/media/loader_2.209e0c9ac600be5ba8337b00bae92c0b.svg",
+    "main.01f3c22d.css.map": "/app-clima/static/css/main.01f3c22d.css.map",
+    "main.ea02196d.js.map": "/app-clima/static/js/main.ea02196d.js.map",
+    "787.9d671024.chunk.js.map": "/app-clima/static/js/787.9d671024.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.01f3c22d.css",
-    "static/js/main.830b7d6f.js"
+    "static/js/main.ea02196d.js"
   ]
 }
